@@ -1,0 +1,2 @@
+module JournalDraftsHelper
+end
