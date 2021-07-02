@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def index 
-        user = User.all
+        user = User.all.
 
         render jason: user
     end
@@ -19,8 +19,8 @@ class UsersController < ApplicationController
     end
 
     def login
-        user = User.find_by(username: params[:username])
-        if user && user.authenticate(params[:password])
+        user = User.find_by(username: params[:username].strip)
+        if user && user.authenticate(params[:password].strip)
             render json: {user: UserSerializer.new(user), token: encode_token({ user_id: user.id })}
         else
             render json: {error: "Esername or Password is not correct"}

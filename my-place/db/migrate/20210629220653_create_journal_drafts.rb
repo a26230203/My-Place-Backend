@@ -4,7 +4,7 @@ class CreateJournalDrafts < ActiveRecord::Migration[6.1]
       t.integer :user_id
       t.string :title
       t.text :content
-
+      
       t.timestamps
     end
   end

@@ -15,7 +15,7 @@ class JournalDraftsController < ApplicationController
     private
 
     def journals_draft_params
-        params.permit(:user_id, :title, :content)
+        params.permit(:user_id, :title, :content, :image)
     end
 
 

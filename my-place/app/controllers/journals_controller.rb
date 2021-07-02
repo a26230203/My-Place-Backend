@@ -13,6 +13,18 @@ class JournalsController < ApplicationController
         
     end
 
+    def update
+        journal = Journal.find(params[:id])
+
+        if journal
+            journal.update(journal_params)
+
+            render json: {journal: JournalSerializer.new(journal)}
+        else
+            render json: {error: "Jouranl not found" }
+        end
+    end
+
     def destroy 
         journal = Journal.find(params[:id])
 
@@ -28,7 +40,7 @@ class JournalsController < ApplicationController
     private
 
     def journal_params
-        params.permit(:user_id, :title, :content)
+        params.permit(:user_id, :title, :content, :image)
     end
 
 end

@@ -16,5 +16,5 @@ class User < ApplicationRecord
     has_many :albums
     has_many :journals
     has_many :journalsDrafts
-    has_many :photos, through: :albums
+    has_many :photos
 end
