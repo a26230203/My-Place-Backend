@@ -10,10 +10,32 @@ class PhotosController < ApplicationController
 
 
     def photo_upload
+        image = Photo.new(image_params)
 
-        image = Photo.create(image_params)
+        if image
+            image.save
+        else
+            render json: {error: 'please send image'}
+        end
 
         render json: {image: image}
+    end
+
+    def update
+        photo = Photo.find(params[:id])
+
+        if photo
+            photo.update(image_params)
+        else
+            render json: {error: 'photo not found'}
+        end
+    end
+
+
+    def destroy
+        photo = Photo.find(params[:id])
+        photo.destroy
+        render json: {message: "photo is deleted"}
     end
 
 

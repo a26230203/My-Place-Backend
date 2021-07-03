@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post "/signup", to: "users#create"
 
   post '/upload', to: "jouranl_images#upload"
-  post '/photo', to: "photos#upload"
+  post '/photo', to: "photos#preview"
   post '/photoupload', to: "photos#photo_upload"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
