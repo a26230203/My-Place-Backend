@@ -8,7 +8,6 @@ class PhotosController < ApplicationController
          }
     end
 
-
     def photo_upload
         image = Photo.new(image_params)
 
@@ -31,15 +30,32 @@ class PhotosController < ApplicationController
         end
     end
 
+    def update_album
+        photos = Photo.all.select { |photo| photo.album_id == params[:album_id]}
+        photos.map{|photo| photo.update(album_id: nil)}
+
+        render json: {message: "Album is deleted"}
+    end
+
+    def remove_album
+        photos = Photo.find(params[:id])
+        if photos
+            photos.update(album_id: nil)
+        else
+            render json: {error: 'photo not found'}
+        end
+        render json: {message: "remove from current album"}
+    end
 
     def destroy
         photo = Photo.find(params[:id])
-        photo.destroy
+        if photo
+            photo.destroy
+        else
+            render json: {error: 'photo not found'}
+        end
         render json: {message: "photo is deleted"}
     end
-
-
-
 
     private
 

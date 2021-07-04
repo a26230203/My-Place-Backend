@@ -3,7 +3,7 @@ class AlbumsController < ApplicationController
     def index
         album = Album.all
 
-        render json: {album: album}
+        render json:  album
     end
 
     def create
@@ -14,6 +14,16 @@ class AlbumsController < ApplicationController
         else
             render json: {error: 'please upload album'}
         end
+    end
+
+    def destroy
+        album = Album.find(params[:id])
+        if album
+            album.destroy
+        else
+            render json: {error: 'Album not found'}
+        end
+        render json: {message: "album is deleted"}
     end
 
     private
