@@ -17,4 +17,6 @@ class User < ApplicationRecord
     has_many :journals
     has_many :journalsDrafts
     has_many :photos
+    has_many :musics
+    has_many :notes
 end
